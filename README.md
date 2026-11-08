@@ -3,7 +3,9 @@
 A Kotlin Multiplatform (JVM + Android) library for Septentrio Binary Format (SBF) receiver
 data. It provides block framing and CRC, stream resynchronisation, all measurement decoders
 (MeasEpoch, GenMeasEpoch, SISMeas, MeasExtra, MeasFullRange, Meas3Ranges/Doppler/CN0HiRes/PP/MP),
-epoch assembly and time filtering.
+epoch assembly and time filtering. It also decodes the position and status blocks that monitoring
+apps plot: PVTGeodetic, PVTCartesian, PosCovGeodetic/Cartesian, DOP, AttEuler, BaseStation,
+DiffCorrIn, ChannelStatus and SatVisibility.
 
 It is a data-oriented rewrite of the `sbf` library in `demos/SBF/ns/sbf2asc-kotlin`, built with
 the Kotlin Toolchain:
@@ -40,6 +42,7 @@ longer.
 | `sbf` | the library (`ruggedmobile.sbf`) |
 | `testkit` | SBF block encoder for tests |
 | `reference` | unmodified copy of the original library, used as the test baseline |
+| `reference-records` | unmodified copy of gnss-plot's PVT/status decoders, used as the test baseline |
 | `verify` | parity, allocation, memory and speed tests against `reference` |
 | `bench` | throughput/allocation benchmark app |
 
@@ -58,3 +61,20 @@ longer.
 ```
 
 Logs for `verify`/`bench`: `SBF_DATA_DIR`, default `../../../demos/SBF/data`.
+
+## Use from another project
+
+Publish to Maven local:
+
+```bash
+./kotlin publish mavenLocal -m sbf
+```
+
+Then, in the consumer's `module.yaml`:
+
+```yaml
+repositories:
+  - mavenLocal
+dependencies:
+  - za.co.ruggedmobile:sbf:0.1.0
+```

@@ -15,6 +15,7 @@ bytes**. The original sources are in the `reference` module, unmodified.
 | `FuzzParityTest` | `verify` | **Damaged input**: 40 seeds × 3 logs × 2 modes of stream damage (bit flips, dropped/duplicated/inserted runs, truncation, injected `$`), plus 40 seeds × 3 logs × 2 modes of payload damage with the CRC recomputed, so corrupt contents reach the decoders. Both libraries must agree, or fail identically |
 | `MemoryTest` | `verify` | Exact steady-state allocation per pass, retained heap compared with the original, and a long replay with no heap growth and no GC |
 | `SpeedTest` | `verify` | Median time of the new library ≤ the original's, framing and full decoding, Meas3 and legacy logs |
+| `RecordsParityTest` | `verify` | The PVT/status decoders equal gnss-plot's `SbfRecords` (copied into `reference-records`) on every real block of 10 types, on damaged and truncated blocks, and in their code tables; they allocate nothing. See [07](07-pvt-status-decoders.md) |
 
 ## How parity is compared (`Lockstep`)
 

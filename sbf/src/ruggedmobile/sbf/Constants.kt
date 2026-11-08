@@ -36,6 +36,11 @@ object BlockNumber {
     const val SIS_MEAS = 4115
     const val END_OF_MEAS = 5922
 
+    const val SAT_VISIBILITY = 4012
+    const val CHANNEL_STATUS = 4013
+    const val POS_COV_GEODETIC = 5906
+    const val DIFF_CORR_IN = 5919
+
     const val PVT_CARTESIAN_1 = 5903
     const val PVT_CARTESIAN_2 = 4006
     const val PVT_GEODETIC_1 = 5904

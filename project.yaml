@@ -3,6 +3,8 @@ modules:
   - bench
   # Frozen, unmodified copy of the original sbf2asc-kotlin `sbf` library (test-only baseline).
   - reference
+  # Frozen, unmodified copy of gnss-plot's SBF PVT/status decoders (test-only baseline).
+  - reference-records
   # The data-oriented SBF library (Kotlin Multiplatform: JVM + Android).
   - sbf
   # Independent SBF block encoder shared by the test suites (test-only).

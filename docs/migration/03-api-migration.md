@@ -121,3 +121,8 @@ when (b.number) {
 ```
 
 These reads go straight into the reader's buffer, with no copy and no allocation.
+
+For the blocks gnss-plot decoded (PVTGeodetic, PVTCartesian, PosCov*, DOP, AttEuler, BaseStation,
+DiffCorrIn, ChannelStatus, SatVisibility), there are named accessors that also map do-not-use
+values: `PvtGeodetic.latitudeRad(b)`, `Dop.pdop(b)`, `SatDirections.readChannelStatus(b)`, etc.
+See [07-pvt-status-decoders.md](07-pvt-status-decoders.md).

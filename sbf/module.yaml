@@ -14,3 +14,11 @@ test-dependencies:
 settings:
   android:
     namespace: ruggedmobile.sbf
+  publishing:
+    enabled: true
+    group: za.co.ruggedmobile
+    version: 0.1.0
+
+repositories:
+  - url: mavenLocal
+    publish: true
