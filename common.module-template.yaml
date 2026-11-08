@@ -1,0 +1,7 @@
+# Shared settings, applied by every module.
+settings:
+  kotlin:
+    languageVersion: 2.4
+  jvm:
+    jdk:
+      version: 21

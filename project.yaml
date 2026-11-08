@@ -1,0 +1,11 @@
+modules:
+  # Throughput benchmark app: new library vs reference on real logs.
+  - bench
+  # Frozen, unmodified copy of the original sbf2asc-kotlin `sbf` library (test-only baseline).
+  - reference
+  # The data-oriented SBF library (Kotlin Multiplatform: JVM + Android).
+  - sbf
+  # Independent SBF block encoder shared by the test suites (test-only).
+  - testkit
+  # Parity, allocation, memory and speed tests: new library vs reference.
+  - verify
