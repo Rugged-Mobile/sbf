@@ -1,0 +1,14 @@
+# Throughput / allocation benchmark: new library vs the reference copy of the original.
+#   ./kotlin run -m bench -- [options] [file.sbf ...]     (see Main.kt for options)
+product: jvm/app
+
+apply:
+  - //common.module-template.yaml
+
+dependencies:
+  - //sbf
+  - //reference
+
+settings:
+  jvm:
+    mainClass: ruggedmobile.sbf.bench.MainKt

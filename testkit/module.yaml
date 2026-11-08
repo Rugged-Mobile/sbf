@@ -1,0 +1,12 @@
+# Test-only helper: builds SBF blocks. Deliberately independent of both the new library and
+# the reference (it has its own CRC), so encoder bugs cannot mask decoder bugs.
+product:
+  type: kmp/lib
+  platforms: [jvm, android]
+
+apply:
+  - //common.module-template.yaml
+
+settings:
+  android:
+    namespace: ruggedmobile.sbf.testkit

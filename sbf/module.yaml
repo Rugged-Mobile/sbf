@@ -1,0 +1,16 @@
+product:
+  type: kmp/lib
+  platforms: [jvm, android]
+
+# Common code is in src/. The only platform code is InputStream.asByteSource(), with one copy in
+# src@jvm/ and one in src@android/ (an alias covering both platforms would equal common).
+
+apply:
+  - //common.module-template.yaml
+
+test-dependencies:
+  - //testkit
+
+settings:
+  android:
+    namespace: ruggedmobile.sbf

@@ -1,0 +1,6 @@
+# Unmodified copy of sbf2asc-kotlin/sbf/src/main/kotlin/sbf (see README.md in this folder).
+# Used only as the baseline for parity, memory and speed comparisons. Do not edit.
+product: jvm/lib
+
+apply:
+  - //common.module-template.yaml

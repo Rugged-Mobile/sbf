@@ -1,0 +1,24 @@
+# Test-only module: compares the new library against the reference copy of the original.
+#   - parity:     every block and every decoded field, bit for bit, on real logs and fuzzed input
+#   - allocation: bytes allocated per block in steady state (exact, from the JVM's per-thread counter)
+#   - memory:     retained heap of reader + collector, and heap stability over long runs
+#   - speed:      median throughput, new must not be slower than the original
+#
+# Real logs are read from SBF_DATA_DIR (env) / -Dsbf.data.dir, defaulting to
+# <project root>/../../../demos/SBF/data. Tests that need a log are skipped when it is missing.
+product: jvm/lib
+
+apply:
+  - //common.module-template.yaml
+
+test-dependencies:
+  - //sbf
+  - //reference
+  - //testkit
+
+settings:
+  jvm:
+    test:
+      freeJvmArgs:
+        - -Xmx2g
+        - -XX:+UseG1GC
