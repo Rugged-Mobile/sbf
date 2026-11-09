@@ -31,6 +31,7 @@ mobile/libs/sbf/
 │   └── test/ruggedmobile/sbf/       unit tests (run on JVM and Android)
 ├── testkit/                         SBF block encoder for tests (own CRC, no shared code)
 ├── reference/                       verbatim copy of the original library (package `sbf`)
+├── reference-records/               verbatim copy of gnss-plot's SbfRecords decoders (test baseline)
 ├── verify/                          parity / allocation / memory / speed tests (JVM)
 ├── bench/                           benchmark app (JVM)
 └── docs/migration/                  this documentation
@@ -55,6 +56,46 @@ Toolchain notes (0.13.0): `aliases:` is a top-level key of `module.yaml`, not a 
 must keep LF line endings, even on Windows with `core.autocrlf=true`, or it breaks under bash and
 WSL. The wrapper scripts are committed, as in generated projects, so everyone builds with the same
 Toolchain version (0.13.0, pinned by checksum in the scripts).
+
+## Publishing
+
+The Toolchain does not allow module dependencies outside a project's root, so other projects
+(the plot, GNSS and app projects next to this one) use the library through Maven local.
+`sbf/module.yaml` enables publishing:
+
+```yaml
+settings:
+  publishing:
+    enabled: true
+    group: za.co.ruggedmobile
+    version: 0.1.0
+
+repositories:
+  - url: mavenLocal
+    publish: true
+```
+
+Publish after changing the library:
+
+```bash
+./kotlin publish mavenLocal -m sbf
+```
+
+This writes `za.co.ruggedmobile:sbf:0.1.0` to `~/.m2/repository`: a Gradle module file that
+selects `sbf-jvm` (JAR) or `sbf-android` (AAR) for the consumer's platform. A consumer adds:
+
+```yaml
+repositories:
+  - mavenLocal
+
+dependencies:
+  - za.co.ruggedmobile:sbf:0.1.0
+```
+
+Checked with a scratch project on Toolchain 0.13.0: a `jvm/app` runs against it, an
+`android/app` packages it into its APK, and a local plugin (`jvm/amper-plugin`) can depend on a
+Maven-local artifact too. Publishing is a Toolchain preview feature. `testkit`, `reference*`,
+`verify` and `bench` are not published.
 
 ## Build and test
 

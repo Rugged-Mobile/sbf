@@ -11,6 +11,7 @@ Kotlin Toolchain project with a data-oriented design, and how the result was ver
 | [04-verification.md](04-verification.md) | How functional parity, memory and speed are tested; thresholds; how to run |
 | [05-results.md](05-results.md) | Measured results: parity, allocation, retained heap, GC, throughput |
 | [06-behaviour.md](06-behaviour.md) | Behaviour kept on purpose, lifetime rules for reused objects, and the C bug fixes carried over |
+| [07-pvt-status-decoders.md](07-pvt-status-decoders.md) | PVT, covariance, DOP, attitude, correction and satellite-direction decoders moved in from gnss-plot, and their verification |
 
 ## Summary
 
@@ -25,3 +26,8 @@ Kotlin Toolchain project with a data-oriented design, and how the result was ver
   higher than the original's. See [05-results.md](05-results.md) for the measured numbers.
 - **Kotlin Multiplatform.** Common code targets JVM and Android. The only platform code is the
   `InputStream` adapter.
+- **PVT and status blocks too.** The decoders gnss-plot used for position, quality, corrections
+  and satellite directions are part of the library, as allocation-free field accessors, and are
+  verified bit for bit against gnss-plot's originals ([07](07-pvt-status-decoders.md)).
+- **Published to Maven local** as `za.co.ruggedmobile:sbf`, so other Toolchain projects can use it
+  ([01](01-project.md#publishing)).

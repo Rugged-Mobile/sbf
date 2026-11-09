@@ -3,8 +3,8 @@
 Measured on 2026-11-08: Intel Core i7-6850K (6 cores / 12 threads, 3.6 GHz), Windows 10, Java
 HotSpot 21.0.9, G1 GC. Raw benchmark output: [bench-2026-11-08.csv](bench-2026-11-08.csv).
 
-Confirmed with the Kotlin Toolchain 0.13.0 (`./kotlin test`): `sbf` passes 28/28 tests on
-both JVM and Android, and `verify` passes 26/26 with none skipped. The Toolchain run reproduced
+Confirmed with the Kotlin Toolchain 0.13.0 (`./kotlin test`): `sbf` passes 37/37 tests on
+both JVM and Android, and `verify` passes 30/30 with none skipped (with the PVT/status decoders added). The Toolchain run reproduced
 the parity, allocation, soak and retained-heap figures below, and gave speed-ups of
 ×3.35–3.74 for framing and ×2.86–3.63 for measurements. The benchmark table comes from the
 `bench` app.
@@ -31,6 +31,9 @@ Fuzzing: 480 damaged inputs, each run in both modes.
 |---|---:|---:|---:|---:|
 | Stream damage | 240 | 13,706 | 9,330 | 0 |
 | Payload damage, valid CRC | 240 | 17,526 | 0 | 0 |
+
+PVT/status decoders (added later, [07](07-pvt-status-decoders.md)): 289,135 real blocks of 10
+types and 216,080 damaged blocks, all identical to gnss-plot's decoders; 0 B allocated per pass.
 
 ## Allocation (steady state, per pass over the data)
 
